@@ -1,37 +1,29 @@
+
 #include <GLFW/glfw3.h>
 
-int main(void)
-{
-    GLFWwindow* window;
+#include "game.h"
 
-    /* Initialize the library */
-    if (!glfwInit())
-        return -1;
 
-    /* Create a windowed mode window and its OpenGL context */
-    window = glfwCreateWindow(640, 480, "Hello World", NULL, NULL);
-    if (!window)
-    {
-        glfwTerminate();
-        return -1;
-    }
+const unsigned int SCREEN_WIDTH = 800;
+const unsigned int SCREEN_HEIGHT = 600;
 
-    /* Make the window's context current */
-    glfwMakeContextCurrent(window);
+Game Breakout(SCREEN_WIDTH, SCREEN_HEIGHT);
 
-    /* Loop until the user closes the window */
+int main(int argc, char* argv[]) {
+
+	glfwInit();
+
+	glfwWindowHint(GLFW_RESIZABLE, false);
+
+	GLFWwindow* window = glfwCreateWindow(SCREEN_WIDTH, SCREEN_HEIGHT, "Breakout", nullptr, nullptr);
+	glfwMakeContextCurrent(window);
+
+	Breakout.Init();
+
     while (!glfwWindowShouldClose(window))
     {
-        /* Render here */
-        glClear(GL_COLOR_BUFFER_BIT);
-
-        /* Swap front and back buffers */
-        glfwSwapBuffers(window);
-
-        /* Poll for and process events */
-        glfwPollEvents();
+        
     }
-
-    glfwTerminate();
-    return 0;
+	glfwTerminate();
+	return 0;
 }
